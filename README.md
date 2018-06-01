@@ -4,7 +4,16 @@ Tensorflow devs only provide a limited set of build and TensorFlow can be challe
 
 ## Usage
 
+- Download cuDNN and put it in a folder called `cudnn`.
+
+- Select a directory with or without GPU support:
+
+```bash
+cd tensorflow-gpu/
+```
+
 - Edit the `build.sh` file as you wish.
+- You can edit the `Dockerfile` to change Cuda and cuDNN version.
 
 - Build the Docker image for the compilation:
 
@@ -23,3 +32,7 @@ docker-compose run tf
 ## Authors
 
 - Hadrien Mary <hadrien.mary@gmail.com>
+
+## License
+
+MIT License. See [LICENSE](LICENSE).

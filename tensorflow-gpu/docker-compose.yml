@@ -5,4 +5,5 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./wheels:/wheels
+      - ../wheels:/wheels
+      - ../cudnn:/cudnn
