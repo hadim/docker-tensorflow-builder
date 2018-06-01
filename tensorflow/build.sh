@@ -41,7 +41,6 @@ export TF_SET_ANDROID_WORKSPACE=0
 export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
 
-bazel clean
 ./configure
 bazel build //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
