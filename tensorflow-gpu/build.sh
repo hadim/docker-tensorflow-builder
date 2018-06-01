@@ -18,8 +18,8 @@ git clone --depth 1 --branch $TENSORFLOW_VERSION_TAG "https://github.com/tensorf
 TF_ROOT=/tensorflow
 cd $TF_ROOT
 
-export PYTHON_BIN_PATH=$(which pythons)
-export PYTHON_LIB_PATH="$($PYTHON_BIN_PATH -c 'import site; print(site.getsitepackages()[0])')"
+export PYTHON_BIN_PATH=$(which python)
+export PYTHON_LIB_PATH="$(python -c 'import site; print(site.getsitepackages()[0])')"
 export PYTHONPATH=${TF_ROOT}/lib
 export PYTHON_ARG=${TF_ROOT}/lib
 
