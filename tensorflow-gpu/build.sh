@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -x
 
-# Install Cuda 9.2
-wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "/tmp/cuda.run"
+# Install Cuda
+#wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "/tmp/cuda.run"
+#wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run -O "/tmp/cuda.run"
+wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux -O "/tmp/cuda.run"
 bash "/tmp/cuda.run" --silent --toolkit --override
 
 # Install cuDNN
@@ -59,6 +61,9 @@ export TF_CUDNN_VERSION="$(sed -n 's/^#define CUDNN_MAJOR\s*\(.*\).*/\1/p' $CUDN
 export TF_NEED_CUDA=1
 export TF_NEED_TENSORRT=0
 export TF_NCCL_VERSION=1.3
+
+export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
+ldconfig
 
 # Compilation
 ./configure
