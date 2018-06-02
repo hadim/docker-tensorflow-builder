@@ -8,6 +8,7 @@ Tensorflow only provide a limited set of build and it can be challenging to comp
 
 - `docker`.
 - `docker-compose`.
+- `nvidia-docker` if compiling with CUDA support
 
 ## Usage
 
@@ -20,6 +21,7 @@ git clone https://github.com/hadim/docker-tensorflow-builder.git
 - Download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `binaries/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*
 
 - Edit `docker-compose.yml`. Set the `TF_VERSION_GIT_TAG` and `TF_COMPILATION_WITH_GPU` variables.
+    - **Note** that if you set `TF_COMPILATION_WITH_GPU` to `1` then you need to add `runtime: nvidia` to `docker-compose.yml`.
 
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 

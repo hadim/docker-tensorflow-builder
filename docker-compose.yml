@@ -4,6 +4,8 @@ services:
     build: .
     stdin_open: true
     tty: true
+    # Comment thie line below if needed
+    runtime: nvidia
     volumes:
       - ./wheels:/wheels
       - ./binaries:/binaries
