@@ -72,7 +72,7 @@ export TF_SET_ANDROID_WORKSPACE=0
 export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
 
-# Cuda parameters for the build
+# Cuda parameters
 export CUDA_TOOLKIT_PATH=/usr/local/cuda
 export CUDNN_INSTALL_PATH=/usr/local/cuda
 export TF_CUDA_VERSION="$CUDA_VERSION"
@@ -81,6 +81,7 @@ export TF_NEED_CUDA=1
 export TF_NEED_TENSORRT=0
 export TF_NCCL_VERSION=1.3
 
+# Those two lines are important for the linking step.
 export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
 ldconfig
 
