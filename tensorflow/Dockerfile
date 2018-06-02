@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
 RUN apt update && apt install -y \
     build-essential \
@@ -8,10 +8,6 @@ RUN apt update && apt install -y \
     libjpeg-dev \
     openjdk-8-jdk \
     && rm -rf /var/lib/lists/*
-
-# Install GCC 6 and make it the default compiler
-RUN apt install gcc-6 g++-6 -y && \
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
 
 COPY bazel.list /etc/apt/sources.list.d/
 RUN curl https://bazel.build/bazel-release.pub.gpg | apt-key add - && \

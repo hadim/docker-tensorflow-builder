@@ -7,4 +7,4 @@ services:
     volumes:
       - ../wheels:/wheels
     environment:
-        - TF_VERSION_GIT_TAG=v1.8.0
+      - TF_VERSION_GIT_TAG=${TF_VERSION_GIT_TAG}
