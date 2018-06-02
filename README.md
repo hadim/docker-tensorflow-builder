@@ -12,6 +12,12 @@ Tensorflow only provide a limited set of build and it can be challenging to comp
 
 ## Usage
 
+- Clone this repository:
+
+```bash
+git clone https://github.com/hadim/docker-tensorflow-builder.git
+```
+
 - Download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `binaries/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*
 
 - Edit `docker-compose.yml`. Set the `TF_VERSION_GIT_TAG` and `TF_COMPILATION_WITH_GPU` variables.
