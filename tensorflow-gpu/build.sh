@@ -2,9 +2,16 @@
 set -x
 
 # Install Cuda
-#wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "/tmp/cuda.run"
-#wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run -O "/tmp/cuda.run"
-wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux -O "/tmp/cuda.run"
+if [ "$CUDA_VERSION" = "9.0" ]; then
+	wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run -O "/tmp/cuda.run"
+elif [ "$CUDA_VERSION" = "9.1" ]; then
+	wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux -O "/tmp/cuda.run"
+elif [ "$CUDA_VERSION" = "9.2" ]; then
+	wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "/tmp/cuda.run"
+else
+	echo "You need to set CUDA_VERSION to 9.0, 9.1 or 9.2."
+	exit
+fi
 bash "/tmp/cuda.run" --silent --toolkit --override
 
 # Install cuDNN

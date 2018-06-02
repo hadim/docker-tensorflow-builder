@@ -11,3 +11,4 @@ services:
       - ../binaries:/binaries
     environment:
         - TF_VERSION_GIT_TAG=v1.8.0
+        - CUDA_VERSION=9.1
