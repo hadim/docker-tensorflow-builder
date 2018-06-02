@@ -9,10 +9,10 @@ if [ "$TF_COMPILATION_WITH_GPU" == "1" ] ; then
 
     # Install Cuda 9.2
 	if [ ! -f "cuda.run" ]; then
-		wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O cuda.run
+		wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "cuda.run"
+		chmod 777 "cuda.run"
 	fi
-	bash cuda.run --silent --toolkit --override
-	rm cuda.run
+	bash "cuda.run" --silent --toolkit --override
 
 	# Install cuDNN
 	tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
