@@ -23,11 +23,14 @@ cd tensorflow-gpu/
 docker-compose build
 ```
 
-- Launch the compilation:
+- Launch the bash console and start the compilation:
 
 ```bash
 docker-compose run tf
+bash build.sh
 ```
+
+- Be patient, the compilation can be long.
 
 - Enjoy your Python wheels in the `wheels` folder.
 

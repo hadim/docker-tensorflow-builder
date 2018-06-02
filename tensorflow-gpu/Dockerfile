@@ -28,6 +28,8 @@ RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
     /conda/bin/conda update --all --yes && \
     /conda/bin/conda install --yes numpy wheel
 
+RUN ln -s /conda/bin/python /usr/bin/python
+
 # Install Cuda 9.2
 RUN wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O cuda.run && \
     bash cuda.run --silent --toolkit --override && \
@@ -35,4 +37,4 @@ RUN wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cud
 
 COPY build.sh /build.sh
 
-ENTRYPOINT /build.sh
+ENTRYPOINT bash

@@ -28,6 +28,8 @@ RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
     /conda/bin/conda update --all --yes && \
     /conda/bin/conda install --yes numpy wheel
 
+RUN ln -s /conda/bin/python /usr/bin/python
+
 COPY build.sh /build.sh
 
-ENTRYPOINT /build.sh
+ENTRYPOINT bash

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 # Install cuDNN 7.1
 cd /cudnn
@@ -18,8 +19,8 @@ git clone --depth 1 --branch $TENSORFLOW_VERSION_TAG "https://github.com/tensorf
 TF_ROOT=/tensorflow
 cd $TF_ROOT
 
-export PYTHON_BIN_PATH=$(which python)
-export PYTHON_LIB_PATH="$(python -c 'import site; print(site.getsitepackages()[0])')"
+export PYTHON_BIN_PATH="/conda/bin/python"
+export PYTHON_LIB_PATH="$($PYTHON_BIN_PATH -c 'import site; print(site.getsitepackages()[0])')"
 export PYTHONPATH=${TF_ROOT}/lib
 export PYTHON_ARG=${TF_ROOT}/lib
 
@@ -43,7 +44,7 @@ export TF_DOWNLOAD_MKL=0
 export TF_NEED_MPI=0
 export TF_NEED_S3=1
 export TF_NEED_KAFKA=1
-export TF_NEED_GDR=1
+export TF_NEED_GDR=0
 export TF_NEED_OPENCL_SYCL=0
 export TF_SET_ANDROID_WORKSPACE=0
 
@@ -51,5 +52,8 @@ export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
 
 ./configure
-bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+bazel build --config=opt \
+		    --config=cuda \
+		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
+		    //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
