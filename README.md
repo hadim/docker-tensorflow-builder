@@ -30,7 +30,7 @@ cd tensorflow/
 
 - If compiling `tensorflow-gpu`, you need to set [your default Docker runtime to `nvidia-docker`](https://github.com/NVIDIA/nvidia-docker).
 
-- Edit `docker-compose.yml`. Set the `TF_VERSION_GIT_TAG` variable.
+- Edit `docker-compose.yml`. Set the `TF_VERSION_GIT_TAG` variable. And the `CUDA_VERSION` tag if compiling `tensorflow-gpu` .
 
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
