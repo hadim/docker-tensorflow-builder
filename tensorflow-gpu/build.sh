@@ -93,8 +93,11 @@ bazel build --config=opt \
 		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		    //tensorflow/tools/pip_package:build_pip_package
 
-PROJECT_NAME="tensorflow_gpu_cuda_${TF_CUDA_VERSION}_cudnn_${TF_CUDNN_VERSION}"
-bazel-bin/tensorflow/tools/pip_package/build_pip_package --project_name $PROJECT_NAME /wheels
+# Project name can only be set for TF > 1.8
+#PROJECT_NAME="tensorflow_gpu_cuda_${TF_CUDA_VERSION}_cudnn_${TF_CUDNN_VERSION}"
+#bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name $PROJECT_NAME
+
+bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
 
 # Fix wheel folder permissions
 chmod -R 777 /wheels/
