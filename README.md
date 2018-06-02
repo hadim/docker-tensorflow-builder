@@ -6,16 +6,12 @@ Tensorflow only provide a limited set of build and it can be challenging to comp
 
 ## Usage
 
-- Download cuDNN and put it in a folder called `cudnn`.
+- Download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `binaries/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*
 
-- Select a directory with or without GPU support:
+- Edit `docker-compose.yml`. Set the `TF_VERSION_GIT_TAG` and `TF_COMPILATION_WITH_GPU` variables.
+    - **Note** that if you set `TF_COMPILATION_WITH_GPU` to `1` then you need to set [your default Docker runtime to `nvidia-docker`](https://github.com/NVIDIA/nvidia-docker) in order to give access to the graphic card.
 
-```bash
-cd tensorflow-gpu/
-```
-
-- Edit the `build.sh` file as you wish.
-- You can edit the `Dockerfile` to change Cuda and cuDNN version.
+- Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
 - Build the Docker image for the compilation:
 
@@ -32,7 +28,7 @@ bash build.sh
 
 - Be patient, the compilation can be long.
 
-- Enjoy your Python wheels in the `wheels` folder.
+- Enjoy your Python wheels in the `wheels/` folder.
 
 ## Authors
 

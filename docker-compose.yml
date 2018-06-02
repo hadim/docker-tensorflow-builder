@@ -6,7 +6,7 @@ services:
     tty: true
     volumes:
       - ./wheels:/wheels
-      - ./cudnn:/cudnn
+      - ./binaries:/binaries
     environment:
         - TF_VERSION_GIT_TAG=v1.8.0
         - TF_COMPILATION_WITH_GPU=1

@@ -14,7 +14,7 @@ if [ "$TF_COMPILATION_WITH_GPU" == "1" ] ; then
 	bash cuda.run --silent --toolkit --override
 	rm cuda.run
 
-	# Install cuDNN 7.1
+	# Install cuDNN
 	tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
 	tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/include/*.h'
 
