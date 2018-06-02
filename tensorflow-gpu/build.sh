@@ -1,23 +1,28 @@
 #!/usr/bin/env bash
-set -x
+set -e
 
 # Install Cuda
 if [ "$CUDA_VERSION" = "9.0" ]; then
-	wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run -O "/tmp/cuda.run"
+	CUDA_URL="https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run"
 elif [ "$CUDA_VERSION" = "9.1" ]; then
-	wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux -O "/tmp/cuda.run"
+	CUDA_URL="https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux"
 elif [ "$CUDA_VERSION" = "9.2" ]; then
-	wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "/tmp/cuda.run"
+	CUDA_URL="https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux"
 else
-	echo "You need to set CUDA_VERSION to 9.0, 9.1 or 9.2."
+	echo "Error: You need to set CUDA_VERSION to 9.0, 9.1 or 9.2."
 	exit
 fi
+wget $CUDA_URL -O "/tmp/cuda.run"
 bash "/tmp/cuda.run" --silent --toolkit --override
 
 # Install cuDNN
-cd /binaries
-tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
-tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/include/*.h'
+cd /cudnn
+CUDNN_FILENAME="cudnn-$CUDA_VERSION-linux-x64-v$CUDNN_VERSION.tgz"
+if [ ! -f $CUDNN_FILENAME ]; then
+    echo "Error: cuDNN archive $CUDNN_FILENAME does not exist. Please copy it into the cudnn/ folder."
+    exit
+fi
+tar --no-same-owner -xzf $CUDNN_FILENAME -C /usr/local --wildcards 'cuda/*'
 
 # Compile TensorFlow
 
@@ -63,7 +68,7 @@ export CC_OPT_FLAGS="-march=native"
 # Cuda parameters for the build
 export CUDA_TOOLKIT_PATH=/usr/local/cuda
 export CUDNN_INSTALL_PATH=/usr/local/cuda
-export TF_CUDA_VERSION="$($CUDA_TOOLKIT_PATH/bin/nvcc --version | sed -n 's/^.*release \(.*\),.*/\1/p')"
+export TF_CUDA_VERSION="$CUDA_VERSION"
 export TF_CUDNN_VERSION="$(sed -n 's/^#define CUDNN_MAJOR\s*\(.*\).*/\1/p' $CUDNN_INSTALL_PATH/include/cudnn.h)"
 export TF_NEED_CUDA=1
 export TF_NEED_TENSORRT=0

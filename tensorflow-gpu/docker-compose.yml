@@ -8,7 +8,8 @@ services:
     # runtime: nvidia
     volumes:
       - ../wheels:/wheels
-      - ../binaries:/binaries
+      - ../cudnn:/cudnn
     environment:
-        - TF_VERSION_GIT_TAG=v1.8.0
-        - CUDA_VERSION=9.1
+        - TF_VERSION_GIT_TAG=${TF_VERSION_GIT_TAG}
+        - CUDA_VERSION=${CUDA_VERSION}
+        - CUDNN_VERSION=${CUDNN_VERSION}

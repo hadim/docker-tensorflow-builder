@@ -18,37 +18,55 @@ Tensorflow only provide a limited set of build and it can be challenging to comp
 git clone https://github.com/hadim/docker-tensorflow-builder.git
 ```
 
-- Choose which flavor you wan to compile:
-
-```bash
-cd tensorflow-gpu/
-# or
-cd tensorflow/
-```
-
-- If compiling `tensorflow-gpu`, download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `binaries/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*
-
-- If compiling `tensorflow-gpu`, you need to set [your default Docker runtime to `nvidia-docker`](https://github.com/NVIDIA/nvidia-docker).
-
-- Edit `docker-compose.yml`. Set the `TF_VERSION_GIT_TAG` variable. And the `CUDA_VERSION` tag if compiling `tensorflow-gpu` .
+### TensoFlow CPU
 
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
-- Build the Docker image for the compilation:
-
 ```bash
+cd tensorflow/
+
+# Build the Docker image
 docker-compose build
-```
 
-- Launch the bash console and start the compilation:
+# Set env variables
+export TF_VERSION_GIT_TAG=v1.8.0
 
-```bash
+# Launch the Docker console
 docker-compose run tf
+
+# Start the compilation (this command is executed inside the Docker container)
 bash build.sh
 ```
 
-- Be patient, the compilation can be long.
+### TensorFlow GPU
 
+- Download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `cudnn/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*.
+
+- Set [your default Docker runtime to `nvidia-docker`](https://github.com/NVIDIA/nvidia-docker).
+
+- Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
+
+```bash
+cd tensorflow-gpu/
+
+# Build the Docker image
+docker-compose build
+
+# Set env variables
+export TF_VERSION_GIT_TAG=v1.8.0
+export CUDA_VERSION=9.1
+export CUDNN_VERSION=7.1
+
+# Launch the Docker console
+docker-compose run tf
+
+# Start the compilation (this command is executed inside the Docker container)
+bash build.sh
+```
+
+---
+
+- Be patient, the compilation can be long.
 - Enjoy your Python wheels in the `wheels/` folder.
 
 ## Authors
