@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tf:
+    build: .
+    stdin_open: true
+    tty: true
+    # Soon to be available. In the meantime you need to set your default runtime to nvidia.
+    # runtime: nvidia
+    volumes:
+      - ../wheels:/wheels
+      - ../binaries:/binaries
+    environment:
+        - TF_VERSION_GIT_TAG=v1.8.0

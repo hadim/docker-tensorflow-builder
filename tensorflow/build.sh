@@ -1,36 +1,6 @@
 #!/usr/bin/env bash
 set -x
 
-if [ "$TF_COMPILATION_WITH_GPU" == "1" ] ; then
-
-	echo "Compile TensorFlow with Cuda enabled."
-
-    # Install Cuda 9.2
-	wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda_9.2.88_396.26_linux -O "/tmp/cuda.run"
-	bash "/tmp/cuda.run" --silent --toolkit --override
-
-	# Install cuDNN
-	cd /binaries
-	tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
-	tar --no-same-owner -xzf cudnn*.tgz -C /usr/local --wildcards 'cuda/include/*.h'
-
-	# Cuda parameters for the build
-	export CUDA_TOOLKIT_PATH=/usr/local/cuda
-	export CUDNN_INSTALL_PATH=/usr/local/cuda
-	export TF_CUDA_VERSION="$($CUDA_TOOLKIT_PATH/bin/nvcc --version | sed -n 's/^.*release \(.*\),.*/\1/p')"
-	export TF_CUDNN_VERSION="$(sed -n 's/^#define CUDNN_MAJOR\s*\(.*\).*/\1/p' $CUDNN_INSTALL_PATH/include/cudnn.h)"
-	export TF_NEED_CUDA=1
-	export TF_NEED_TENSORRT=0
-	export TF_NCCL_VERSION=1.3
-
-	BAZEL_BUILD_OPTIONS="--config=cuda"
-else
-	echo "Compile TensorFlow with Cuda disabled."
-
-	export TF_NEED_CUDA=0
-	BAZEL_BUILD_OPTIONS=""
-fi
-
 # Compile TensorFlow
 
 # Here you can change the TensorFlow version you want to build.
@@ -50,6 +20,7 @@ export PYTHONPATH=${TF_ROOT}/lib
 export PYTHON_ARG=${TF_ROOT}/lib
 
 # All other parameters
+export TF_NEED_CUDA=0
 export TF_NEED_GCP=1
 export TF_CUDA_COMPUTE_CAPABILITIES=5.2,3.5
 export TF_NEED_HDFS=1
@@ -76,10 +47,9 @@ export CC_OPT_FLAGS="-march=native"
 ./configure
 
 bazel build --config=opt \
-		    $BAZEL_BUILD_OPTIONS \
 		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		    //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
 
 # Fix wheel folder permissions
-chmod 777 /wheels/*
+chmod -R 777 /wheels/
