@@ -38,6 +38,7 @@ tar --no-same-owner -xzf $CUDNN_FILENAME -C /usr/local --wildcards 'cuda/*'
 # See https://www.tensorflow.org/install/install_sources for more details.
 
 cd /
+rm -fr tensorflow/
 git clone --depth 1 --branch $TF_VERSION_GIT_TAG "https://github.com/tensorflow/tensorflow.git"
 
 TF_ROOT=/tensorflow
