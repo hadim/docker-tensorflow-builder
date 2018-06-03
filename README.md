@@ -76,9 +76,9 @@ bash build.sh
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1.8.0 | 3.6 | Intel Core i7-7700HQ | CPU | - | `avx sse` | - | - | **Yes** | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7 | **Yes** |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7.1 | **Yes** |
+| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7.1 | **Yes** | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.0-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.1 | 7.1 | **Yes** | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.2 | 7.1 | **No** |
+| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.2 | 7.1 | **Yes** | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.2-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Intel Core i7 960 | CPU | - | `sse` | - | - | **Soon** |
 | 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.0 | 7 | **Soon** |
 | 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.0 | 7.1 | **Soon** |
