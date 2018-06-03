@@ -70,16 +70,14 @@ bash build.sh
 - Enjoy your Python wheels in the `wheels/` folder.
 - *Don't forget to remove the container to free the space after the build: `docker-compose rm --force`.*
 
-## Working Builds
+## Builds
 
-Here are some builds I have tried:
-
-| TensorFlow | Python | Processor | Platform | GC | AVX | SSE | CUDA | cuDNN | Worked? |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | CPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | - | - | **Yes** |
+| TensorFlow | Python | Processor | Platform | GC | AVX | SSE | CUDA | cuDNN | Worked? | Link |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1.8.0 | 3.6 | Intel Core i7-7700HQ | CPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | - | - | **Yes** | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | 9.0 | 7 | **Yes** |
 | 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | 9.0 | 7.1 | **Yes** |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | 9.1 | 7.1 | **Yes** |
+| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | 9.1 | 7.1 | **Yes** | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | Yes | Yes | 9.2 | 7.1 | **No** |
 | 1.8.0 | 3.6 | Intel Core i7 960 | CPU | GeForce GTX 1050 Ti | No | Yes | - | - | **Soon** |
 | 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | No | Yes | 9.0 | 7 | **Soon** |
