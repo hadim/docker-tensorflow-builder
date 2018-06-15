@@ -31,6 +31,11 @@ if [ ! -f $CUDNN_FILENAME ]; then
 fi
 tar --no-same-owner -xzf $CUDNN_FILENAME -C /usr/local --wildcards 'cuda/*'
 
+# Install an appropriate Python environment
+conda create --yes -n tensorflow python==$PYTHON_VERSION
+source activate tensorflow
+conda install --yes numpy wheel
+
 # Compile TensorFlow
 
 # Here you can change the TensorFlow version you want to build.
@@ -45,7 +50,7 @@ TF_ROOT=/tensorflow
 cd $TF_ROOT
 
 # Python path options
-export PYTHON_BIN_PATH="/conda/bin/python"
+export PYTHON_BIN_PATH=$(which python)
 export PYTHON_LIB_PATH="$($PYTHON_BIN_PATH -c 'import site; print(site.getsitepackages()[0])')"
 export PYTHONPATH=${TF_ROOT}/lib
 export PYTHON_ARG=${TF_ROOT}/lib

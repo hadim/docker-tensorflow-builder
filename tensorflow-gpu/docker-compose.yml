@@ -11,5 +11,6 @@ services:
       - ../cudnn:/cudnn
     environment:
         - TF_VERSION_GIT_TAG=${TF_VERSION_GIT_TAG}
+        - PYTHON_VERSION=${PYTHON_VERSION-3.6}
         - CUDA_VERSION=${CUDA_VERSION}
         - CUDNN_VERSION=${CUDNN_VERSION}

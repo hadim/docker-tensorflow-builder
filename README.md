@@ -29,6 +29,7 @@ cd tensorflow/
 docker-compose build
 
 # Set env variables
+export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
 
 # Launch the Docker console
@@ -53,6 +54,7 @@ cd tensorflow-gpu/
 docker-compose build
 
 # Set env variables
+export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
 export CUDA_VERSION=9.1
 export CUDNN_VERSION=7.1
