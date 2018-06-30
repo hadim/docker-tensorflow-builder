@@ -86,7 +86,7 @@ bash build.sh
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.2 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.2-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | CPU | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7 | - |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7 | [Link](https://storage.cloud.google.com/tensorflow-builds/nazgul/ubuntu-16.04/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7.1 | - |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel Core i7 960 | GPU | `avx sse` | 9.2 | 7.1 | - |
