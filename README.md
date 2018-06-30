@@ -33,7 +33,6 @@ docker-compose build
 # Set env variables
 export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
-export USE_GPU=0
 
 # Launch the Docker console
 docker-compose run tf
@@ -51,9 +50,9 @@ bash build.sh
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
 ```bash
-cd tensorflow/ubuntu-16.04/
+cd tensorflow-gpu/ubuntu-16.04/
 # or
-# cd tensorflow/centos-6.6
+# cd tensorflow-gpu/centos-6.6
 
 # Build the Docker image
 docker-compose build
@@ -61,7 +60,6 @@ docker-compose build
 # Set env variables
 export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
-export USE_GPU=1
 export CUDA_VERSION=9.1
 export CUDNN_VERSION=7.1
 

@@ -27,6 +27,5 @@ RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 
 COPY build.sh /build.sh
 COPY build2.sh /build2.sh
-COPY setup_cuda.sh /setup_cuda.sh
 
 ENTRYPOINT bash

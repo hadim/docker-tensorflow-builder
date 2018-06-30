@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+bash setup_cuda.sh
+
 gcc --version
 
 # Install an appropriate Python environment
@@ -51,34 +53,26 @@ export TF_SET_ANDROID_WORKSPACE=0
 export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
 
-if [ "$USE_GPU" -eq "1" ]; then
-    # Cuda parameters
-	export CUDA_TOOLKIT_PATH=/usr/local/cuda
-	export CUDNN_INSTALL_PATH=/usr/local/cuda
-	export TF_CUDA_VERSION="$CUDA_VERSION"
-	export TF_CUDNN_VERSION="$(sed -n 's/^#define CUDNN_MAJOR\s*\(.*\).*/\1/p' $CUDNN_INSTALL_PATH/include/cudnn.h)"
-	export TF_NEED_CUDA=1
-	export TF_NEED_TENSORRT=0
-	export TF_NCCL_VERSION=1.3
+# Cuda parameters
+export CUDA_TOOLKIT_PATH=/usr/local/cuda
+export CUDNN_INSTALL_PATH=/usr/local/cuda
+export TF_CUDA_VERSION="$CUDA_VERSION"
+export TF_CUDNN_VERSION="$(sed -n 's/^#define CUDNN_MAJOR\s*\(.*\).*/\1/p' $CUDNN_INSTALL_PATH/include/cudnn.h)"
+export TF_NEED_CUDA=1
+export TF_NEED_TENSORRT=0
+export TF_NCCL_VERSION=1.3
 
-	# Those two lines are important for the linking step.
-	export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
-	ldconfig
-fi
+# Those two lines are important for the linking step.
+export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
+ldconfig
 
 # Compilation
 ./configure
 
-if [ "$USE_GPU" -eq "1" ]; then
-    bazel build --config=opt \
-    		    --config=cuda \
-    		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
-    		    //tensorflow/tools/pip_package:build_pip_package
-else
-	bazel build --config=opt \
-		    	--action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
-		    	//tensorflow/tools/pip_package:build_pip_package
-fi
+bazel build --config=opt \
+    		--config=cuda \
+    		--action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
+    		//tensorflow/tools/pip_package:build_pip_package
 
 # Project name can only be set for TF > 1.8
 #PROJECT_NAME="tensorflow_gpu_cuda_${TF_CUDA_VERSION}_cudnn_${TF_CUDNN_VERSION}"

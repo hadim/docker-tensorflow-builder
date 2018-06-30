@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda:9.1-runtime-ubuntu16.04
 
 RUN apt update && apt install -y \
     build-essential \
@@ -20,5 +20,6 @@ RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
     /conda/bin/conda update --all --yes
 
 COPY build.sh /build.sh
+COPY setup_cuda.sh /setup_cuda.sh
 
 ENTRYPOINT bash
