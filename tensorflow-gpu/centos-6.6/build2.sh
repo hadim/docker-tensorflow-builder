@@ -73,7 +73,7 @@ ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
 
 # HACK: will probably only work for TF 1.8.0
 sed -i '1360s/.*/  return \["-lrt"\]/' tensorflow/tensorflow.bzl
-sed -i '427/.*/            "-lm", "-lrt"' tensorflow/python/BUILD
+sed -i '427s/.*/            \"-lm\", \"-lrt\"/' tensorflow/python/BUILD
 
 bazel build --config=opt \
 			--linkopt='-lrt -lm' \
