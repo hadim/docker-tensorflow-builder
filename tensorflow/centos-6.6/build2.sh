@@ -51,6 +51,7 @@ export TF_SET_ANDROID_WORKSPACE=0
 # Compiler options
 export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
+export LDFLAGS="-lm -lrt"
 
 # Compilation
 ./configure
@@ -58,16 +59,15 @@ export CC_OPT_FLAGS="-march=native"
 mv /usr/bin/ld /usr/bin/ld_ori
 ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
 
-# HACK: will probably only work for TF 1.8.0
-sed -i '1360s/.*/  return \["-lrt"\]/' tensorflow/tensorflow.bzl
-sed -i '427s/.*/            \"-lm\", \"-lrt\"/' tensorflow/python/BUILD
-
 bazel build --config=opt \
-			--linkopt='-lrt -lm' \
+			--linkopt="-lrt" \
+			--linkopt="-lm" \
+			--host_linkopt="-lrt" \
+			--host_linkopt="-lm" \
 		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		    //tensorflow/tools/pip_package:build_pip_package
 
-rm /usr/bin/ld
+rm -f /usr/bin/ld
 mv /usr/bin/ld_ori /usr/bin/ld
 
 # Project name can only be set for TF > 1.8
