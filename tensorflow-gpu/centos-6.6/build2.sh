@@ -50,7 +50,7 @@ export TF_SET_ANDROID_WORKSPACE=0
 
 # Compiler options
 export GCC_HOST_COMPILER_PATH=$(which gcc)
-export CC_OPT_FLAGS="-march=native -lrt -lm"
+export CC_OPT_FLAGS="-march=native"
 
 # Cuda parameters
 export CUDA_TOOLKIT_PATH=/usr/local/cuda
