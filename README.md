@@ -80,7 +80,7 @@ bash build.sh
 
 ### Tensorflow 1.8.0
 
-| Py | Dist | glibc | Processor | Arch | Flags | CUDA | cuDNN | Link |
+| Py | Distribution | glibc | Processor | Arch | Flags | CUDA | cuDNN | Link |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | CPU | `avx2 sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.0 | 7 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
