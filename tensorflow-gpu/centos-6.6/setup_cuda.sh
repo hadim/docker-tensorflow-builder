@@ -2,7 +2,7 @@
 
 # Remove previous Cuda and cuDNN installation
 rm -fr /usr/local/cuda*
-find / -name *cudnn* -exec rm {} +
+find /usr -name *cudnn* -exec rm {} +
 
 # Test if an NVIDIA card is detected
 if (( $(find /dev -name nvidia* |wc -l) == 0 )); then
