@@ -55,10 +55,16 @@ export CC_OPT_FLAGS="-march=native -lrt -lm"
 # Compilation
 ./configure
 
+mv /usr/bin/ld /usr/bin/ld_ori
+ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
+
 bazel build --config=opt \
 			--linkopt='-lrt -lm' \
 		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		    //tensorflow/tools/pip_package:build_pip_package
+
+rm /usr/bin/ld
+mv /usr/bin/ld_ori /usr/bin/ld
 
 # Project name can only be set for TF > 1.8
 #PROJECT_NAME="tensorflow_gpu_cuda_${TF_CUDA_VERSION}_cudnn_${TF_CUDNN_VERSION}"
