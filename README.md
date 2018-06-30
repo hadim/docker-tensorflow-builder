@@ -92,11 +92,11 @@ bash build.sh
 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7.1 | - |
 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 3.6 | Ubuntu 16.04 | 2.23 | Intel Core i7 960 | GPU | `avx sse` | 9.2 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | CPU | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/centos-6.6/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.2 | 7.1 | - |
+| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | CPU | `avx2 sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/centos-6.6/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx2 sse` | 9.0 | 7 | - |
+| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx2 sse` | 9.0 | 7.1 | - |
+| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx2 sse` | 9.1 | 7.1 | - |
+| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx2 sse` | 9.2 | 7.1 | - |
 
 ### Tensorflow 1.9.0
 
