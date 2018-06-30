@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-source /root/.bashrc
+export PATH="/conda/bin:/usr/bin:$PATH"
 
 if [ "$USE_GPU" -eq "1" ]; then
 	bash setup_cuda.sh
