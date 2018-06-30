@@ -72,7 +72,7 @@ mv /usr/bin/ld /usr/bin/ld_ori
 ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
 
 # HACK: will probably only work for TF 1.8.0
-sed -i '1360s/.*/\["-lrt"\]/' tensorflow/tensorflow.bzl
+sed -i '1360s/.*/  return \["-lrt"\]/' tensorflow/tensorflow.bzl
 
 bazel build --config=opt \
 			--linkopt='-lrt -lm' \
