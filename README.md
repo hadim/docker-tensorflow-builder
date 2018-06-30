@@ -80,7 +80,7 @@ bash build.sh
 
 ## Builds
 
-| TF | Python | Processor | Distribution | Glibc | Platform | GC | Flags | CUDA | cuDNN | Link |
+| TF | Python | Proc | Dist. | glibc | Plat | GC | Flags | CUDA | cuDNN | Link |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | CPU | - | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
 | 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
