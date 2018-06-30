@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.1-runtime-ubuntu16.04
+FROM ubuntu:16.04
 
 RUN apt update && apt install -y \
     build-essential \
@@ -9,10 +9,6 @@ RUN apt update && apt install -y \
     openjdk-8-jdk \
     && rm -rf /var/lib/lists/*
 
-COPY bazel.list /etc/apt/sources.list.d/
-RUN curl https://bazel.build/bazel-release.pub.gpg | apt-key add - && \
-    apt-get update && apt-get install -y bazel
-
 # Install Anaconda
 WORKDIR /
 RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" -O "miniconda.sh" && \
@@ -21,15 +17,10 @@ RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
     echo PATH='/conda/bin:$PATH' >> /root/.bashrc && \
     /conda/bin/conda config --add channels conda-forge && \
     /conda/bin/conda update --yes -n base conda && \
-    /conda/bin/conda update --all --yes && \
-    /conda/bin/conda install --yes numpy wheel
-
-RUN ln -s /conda/bin/python /usr/bin/python
-
-# Remove previous Cuda and cuDNN installation
-RUN rm -fr /usr/local/cuda*
-RUN find / -name *cudnn* -exec rm {} +
+    /conda/bin/conda update --all --yes
 
 COPY build.sh /build.sh
+COPY build2.sh /build2.sh
+COPY setup_cuda.sh /setup_cuda.sh
 
 ENTRYPOINT bash

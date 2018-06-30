@@ -2,7 +2,7 @@
 
 Docker images to compile TensorFlow yourself.
 
-Tensorflow only provide a limited set of build and it can be challenging to compile yourself on certain configuration. With this `Dockerile`, you should be able to compile TensorFlow on any Linux platform that run Docker.
+Tensorflow only provide a limited set of build and it can be challenging to compile yourself on certain configuration. With this `Dockerfile`, you should be able to compile TensorFlow on any Linux platform that run Docker.
 
 ## Requirements
 
@@ -23,7 +23,9 @@ git clone https://github.com/hadim/docker-tensorflow-builder.git
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
 ```bash
-cd tensorflow/
+cd tensorflow/ubuntu-16.04/
+# or
+# cd tensorflow/centos-6.6
 
 # Build the Docker image
 docker-compose build
@@ -31,6 +33,7 @@ docker-compose build
 # Set env variables
 export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
+export USE_GPU=0
 
 # Launch the Docker console
 docker-compose run tf
@@ -48,7 +51,9 @@ bash build.sh
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
 ```bash
-cd tensorflow-gpu/
+cd tensorflow/ubuntu-16.04/
+# or
+# cd tensorflow/centos-6.6
 
 # Build the Docker image
 docker-compose build
@@ -56,6 +61,7 @@ docker-compose build
 # Set env variables
 export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
+export USE_GPU=1
 export CUDA_VERSION=9.1
 export CUDNN_VERSION=7.1
 
@@ -74,18 +80,26 @@ bash build.sh
 
 ## Builds
 
-| TF | Python | Processor | Platform | GC | Flags | CUDA | cuDNN | Link |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | CPU | - | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.0-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.2 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.2-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7 960 | CPU | - | `sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.0 | 7 | - |
-| 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.0 | 7.1 | - |
-| 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 1.8.0 | 3.6 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.2 | 7.1 | - |
+| TF | Python | Processor | Distribution | Glibc | Platform | GC | Flags | CUDA | cuDNN | Link |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | CPU | - | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.0-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.2 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/gpu-cuda-9.2-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel Core i7 960 | CPU | - | `sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.0 | 7 | - |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.0 | 7.1 | - |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
+| 1.8.0 | 3.6 | Ubuntu 16.04 | 2.23 | Intel Core i7 960 | GPU | GeForce GTX 1050 Ti | `sse` | 9.2 | 7.1 | - |
+
+| 1.8.0 | 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | CPU | - | `avx sse` | - | - | - |
+| 1.8.0 | 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7 | - |
+| 1.8.0 | 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.0 | 7.1 | - |
+| 1.8.0 | 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.1 | 7.1 | - |
+| 1.8.0 | 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | GeForce GTX 1050 Ti Mobile | `avx sse` | 9.2 | 7.1 | - |
 
 ## Authors
 
