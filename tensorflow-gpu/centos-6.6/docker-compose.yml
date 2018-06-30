@@ -1,0 +1,11 @@
+version: '3'
+services:
+  tf:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../../wheels:/wheels
+    environment:
+      - TF_VERSION_GIT_TAG=${TF_VERSION_GIT_TAG-v1.8.0}
+      - PYTHON_VERSION=${PYTHON_VERSION-3.6}
