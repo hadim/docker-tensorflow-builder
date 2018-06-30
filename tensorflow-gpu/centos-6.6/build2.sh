@@ -56,7 +56,7 @@ export CC_OPT_FLAGS="-march=native -lrt -lm"
 export CUDA_TOOLKIT_PATH=/usr/local/cuda
 export CUDNN_INSTALL_PATH=/usr/local/cuda
 export TF_CUDA_VERSION="$CUDA_VERSION"
-export TF_CUDNN_VERSION="$(sed -n 's/^#define CUDNN_MAJOR\s*\(.*\).*/\1/p' $CUDNN_INSTALL_PATH/include/cudnn.h)"
+export TF_CUDNN_VERSION="$CUDNN_VERSION"
 export TF_NEED_CUDA=1
 export TF_NEED_TENSORRT=0
 export TF_NCCL_VERSION=1.3
@@ -70,6 +70,9 @@ ldconfig
 
 mv /usr/bin/ld /usr/bin/ld_ori
 ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
+
+# HACK: will probably only work for TF 1.8.0
+sed -i '1360s/.*/\["-lrt"\]/' tensorflow/tensorflow.bzl
 
 bazel build --config=opt \
 			--linkopt='-lrt -lm' \
