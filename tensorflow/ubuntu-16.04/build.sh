@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+source /root/.bashrc
+
+if [ "$USE_GPU" -eq "1" ]; then
+	bash setup_cuda.sh
+fi
+
 gcc --version
 
 # Install an appropriate Python environment
@@ -16,11 +22,10 @@ conda install --yes numpy wheel bazel
 
 cd /
 rm -fr tensorflow/
-git clone --depth 1 "https://github.com/tensorflow/tensorflow.git"
+git clone --depth 1 --branch $TF_VERSION_GIT_TAG "https://github.com/tensorflow/tensorflow.git"
 
 TF_ROOT=/tensorflow
 cd $TF_ROOT
-git checkout $TF_VERSION_GIT_TAG
 
 # Python path options
 export PYTHON_BIN_PATH=$(which python)
@@ -52,12 +57,38 @@ export TF_SET_ANDROID_WORKSPACE=0
 export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
 
+if [ "$USE_GPU" -eq "1" ]; then
+	# Cuda parameters
+	export CUDA_TOOLKIT_PATH=/usr/local/cuda
+	export CUDNN_INSTALL_PATH=/usr/local/cuda
+	export TF_CUDA_VERSION="$CUDA_VERSION"
+	export TF_CUDNN_VERSION="$CUDNN_VERSION"
+	export TF_NEED_CUDA=1
+	export TF_NEED_TENSORRT=0
+	export TF_NCCL_VERSION=1.3
+
+	# Those two lines are important for the linking step.
+	export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
+	ldconfig
+fi
+
 # Compilation
 ./configure
 
-bazel build --config=opt \
-		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
-		    //tensorflow/tools/pip_package:build_pip_package
+if [ "$USE_GPU" -eq "1" ]; then
+
+	bazel build --config=opt \
+	    		--config=cuda \
+	    		--action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
+	    		//tensorflow/tools/pip_package:build_pip_package
+
+else
+
+	bazel build --config=opt \
+			    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
+			    //tensorflow/tools/pip_package:build_pip_package
+
+fi
 
 # Project name can only be set for TF > 1.8
 #PROJECT_NAME="tensorflow_gpu_cuda_${TF_CUDA_VERSION}_cudnn_${TF_CUDNN_VERSION}"

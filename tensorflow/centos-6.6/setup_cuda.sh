@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-# Remove previous Cuda and cuDNN installation
-rm -fr /usr/local/cuda*
-find /usr -name *cudnn* -exec rm {} +
-
-# Test if an NVIDIA card is detected
-if (( $(find /dev -name nvidia* |wc -l) == 0 )); then
-	echo "Error: It looks like there is no NVIDIA cards detected in /dev."
-	echo "Did you use nvidia-docker as a Docker runtime?"
-	exit -1
-fi
-
 # Install Cuda
 if [ "$CUDA_VERSION" = "9.0" ]; then
 	CUDA_URL="https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run"

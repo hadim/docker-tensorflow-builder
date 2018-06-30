@@ -8,7 +8,6 @@ Tensorflow only provide a limited set of build and it can be challenging to comp
 
 - `docker`.
 - `docker-compose`.
-- `nvidia-docker` if compiling with CUDA support
 
 ## Usage
 
@@ -33,26 +32,26 @@ docker-compose build
 # Set env variables
 export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
+export USE_GPU=0
 
-# Launch the Docker console
+# Start the compilation
 docker-compose run tf
 
-# Start the compilation (this command is executed inside the Docker container)
-bash build.sh
+# You can also do:
+# docker-compose run tf bash
+# bash build.sh
 ```
 
 ### TensorFlow GPU
 
 - Download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `cudnn/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*.
 
-- Set [your default Docker runtime to `nvidia-docker`](https://github.com/NVIDIA/nvidia-docker).
-
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
 ```bash
-cd tensorflow-gpu/ubuntu-16.04/
+cd tensorflow/ubuntu-16.04/
 # or
-# cd tensorflow-gpu/centos-6.6
+# cd tensorflow/centos-6.6
 
 # Build the Docker image
 docker-compose build
@@ -60,14 +59,16 @@ docker-compose build
 # Set env variables
 export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.8.0
+export USE_GPU=1
 export CUDA_VERSION=9.1
 export CUDNN_VERSION=7.1
 
-# Launch the Docker console
+# Start the compilation
 docker-compose run tf
 
-# Start the compilation (this command is executed inside the Docker container)
-bash build.sh
+# You can also do:
+# docker-compose run tf bash
+# bash build.sh
 ```
 
 ---

@@ -20,5 +20,6 @@ RUN wget "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
     /conda/bin/conda update --all --yes
 
 COPY build.sh /build.sh
+COPY setup_cuda.sh /setup_cuda.sh
 
-ENTRYPOINT bash
+CMD bash build.sh

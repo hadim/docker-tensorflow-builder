@@ -53,19 +53,49 @@ export GCC_HOST_COMPILER_PATH=$(which gcc)
 export CC_OPT_FLAGS="-march=native"
 export LDFLAGS="-lm -lrt"
 
+if [ "$USE_GPU" -eq "1" ]; then
+	# Cuda parameters
+	export CUDA_TOOLKIT_PATH=/usr/local/cuda
+	export CUDNN_INSTALL_PATH=/usr/local/cuda
+	export TF_CUDA_VERSION="$CUDA_VERSION"
+	export TF_CUDNN_VERSION="$CUDNN_VERSION"
+	export TF_NEED_CUDA=1
+	export TF_NEED_TENSORRT=0
+	export TF_NCCL_VERSION=1.3
+
+	# Those two lines are important for the linking step.
+	export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
+	ldconfig
+fi
+
 # Compilation
 ./configure
 
 mv /usr/bin/ld /usr/bin/ld_ori
 ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
 
-bazel build --config=opt \
+if [ "$USE_GPU" -eq "1" ]; then
+
+	bazel build --config=opt \
+				--config=cuda \
+				--linkopt="-lrt" \
+				--linkopt="-lm" \
+				--host_linkopt="-lrt" \
+				--host_linkopt="-lm" \
+			    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
+			    //tensorflow/tools/pip_package:build_pip_package
+
+else
+
+	bazel build --config=opt \
 			--linkopt="-lrt" \
 			--linkopt="-lm" \
 			--host_linkopt="-lrt" \
 			--host_linkopt="-lm" \
 		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		    //tensorflow/tools/pip_package:build_pip_package
+
+fi
 
 rm -f /usr/bin/ld
 mv /usr/bin/ld_ori /usr/bin/ld
