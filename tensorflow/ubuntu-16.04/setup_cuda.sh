@@ -37,22 +37,34 @@ else
     echo "Error: You need to set CUDNN_VERSION to 7.0 or 7.1."
     exit -1
 fi
-CUDNN_URL="https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_${CUDNN_VERSION_DETAILED}-1+cuda${CUDA_VERSION}_amd64.deb"
+CUDNN_URL="https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_${CUDNN_VERSION_DETAILED}-1+cuda${CUDA_VERSION}_amd64.deb"
+CUDNN_URL_DEV="https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_${CUDNN_VERSION_DETAILED}-1+cuda${CUDA_VERSION}_amd64.deb"
 
 # Install Cuda
 wget $CUDA_URL -O "/tmp/cuda.run"
 bash "/tmp/cuda.run" --silent --toolkit --override --toolkitpath $CUDA_PATH
 rm -f "/tmp/cuda.run"
-ln -s $CUDA_PATH "$(dirname $CUDA_PATH)/cuda"
+ln -s $CUDA_PATH "$(dirname $CUDA_PATH)/cuda/"
 
-# Install cuDNN
+# Install cuDNN .so files
 wget $CUDNN_URL -O "/tmp/cudnn.deb"
 mkdir /tmp/cudnn
 cd /tmp/cudnn
 ar x ../cudnn.deb
 tar -xJf data.tar.xz
 mv usr/lib/x86_64-linux-gnu/libcudnn* $CUDA_PATH/lib64/
+rm -fr /tmp/cudnn
+rm -f /tmp/cudnn.deb
+cd /
+
+# Install cuDNN .h and static lib files
+wget $CUDNN_URL_DEV -O "/tmp/cudnn.deb"
+mkdir /tmp/cudnn
+cd /tmp/cudnn
+ar x ../cudnn.deb
+tar -xJf data.tar.xz
 mv usr/include/x86_64-linux-gnu/cudnn_v7.h $CUDA_PATH/include/cudnn.h
+mv usr/lib/x86_64-linux-gnu/libcudnn_static_v7.a $CUDA_PATH/lib64/libcudnn_static.a
 rm -fr /tmp/cudnn
 rm -f /tmp/cudnn.deb
 cd /
