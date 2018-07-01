@@ -44,8 +44,6 @@ docker-compose run tf
 
 ### TensorFlow GPU
 
-- Download [cuDNN](https://developer.nvidia.com/cudnn) and put it in a folder called `cudnn/`. *(Yes, it's not possible to download cuDNN within a script and you need to login to the NVIDIA website to do it. And yes it's extreeemly boring!)*.
-
 - Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
 
 ```bash
