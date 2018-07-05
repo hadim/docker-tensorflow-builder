@@ -47,6 +47,7 @@ export TF_NEED_KAFKA=1
 export TF_NEED_GDR=0
 export TF_NEED_OPENCL_SYCL=0
 export TF_SET_ANDROID_WORKSPACE=0
+export TF_NEED_AWS=0
 
 # Compiler options
 export GCC_HOST_COMPILER_PATH=$(which gcc)
