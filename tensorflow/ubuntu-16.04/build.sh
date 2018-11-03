@@ -13,6 +13,7 @@ gcc --version
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 source activate tensorflow
 conda install --yes numpy wheel bazel
+conda install -c conda-forge keras-applications 
 
 # Compile TensorFlow
 
