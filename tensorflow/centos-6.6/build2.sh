@@ -17,11 +17,10 @@ conda install -c conda-forge keras-applications
 
 cd /
 rm -fr tensorflow/
-git clone --depth 1 "https://github.com/tensorflow/tensorflow.git"
+git clone --depth 1 --branch $TF_VERSION_GIT_TAG "https://github.com/tensorflow/tensorflow.git"
 
 TF_ROOT=/tensorflow
 cd $TF_ROOT
-git checkout $TF_VERSION_GIT_TAG
 
 # Python path options
 export PYTHON_BIN_PATH=$(which python)
