@@ -87,6 +87,7 @@ if [ "$USE_GPU" -eq "1" ]; then
 else
 
 	bazel build --config=opt \
+					--incompatible_remove_native_http_archive=false \
 			    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 			    //tensorflow/tools/pip_package:build_pip_package
 
