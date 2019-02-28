@@ -21,7 +21,7 @@ git clone https://github.com/hadim/docker-tensorflow-builder.git
 
 ### TensoFlow CPU
 
-- Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
+- Edit the `build.sh` file to modify TensorFlow compilation parameters. Then launch the build:
 
 ```bash
 cd tensorflow/ubuntu-16.04/
@@ -33,7 +33,8 @@ docker-compose build
 
 # Set env variables
 export PYTHON_VERSION=3.7
-export TF_VERSION_GIT_TAG=v1.12.0
+export TF_VERSION_GIT_TAG=v1.13.1
+export BAZEL_VERSION=0.19
 export USE_GPU=0
 
 # Start the compilation
@@ -46,7 +47,7 @@ docker-compose run tf
 
 ### TensorFlow GPU
 
-- Edit the `build.sh` file as you wish. Here you can modify TensorFlow compilation options.
+- Edit the `build.sh` file to modify TensorFlow compilation parameters. Then launch the build:
 
 ```bash
 cd tensorflow/ubuntu-16.04/
@@ -58,7 +59,8 @@ docker-compose build
 
 # Set env variables
 export PYTHON_VERSION=3.7
-export TF_VERSION_GIT_TAG=v1.12.0
+export TF_VERSION_GIT_TAG=v1.13.1
+export BAZEL_VERSION=0.19
 export USE_GPU=1
 export CUDA_VERSION=9.1
 export CUDNN_VERSION=7.1

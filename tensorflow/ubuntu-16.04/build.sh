@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -ex
 
 export PATH="/conda/bin:/usr/bin:$PATH"
 
@@ -12,8 +12,8 @@ gcc --version
 # Install an appropriate Python environment
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 source activate tensorflow
-conda install --yes numpy wheel bazel==0.15.0
-conda install --yes -c conda-forge keras-applications
+conda install --yes numpy wheel bazel==$BAZEL_VERSION
+conda install --yes -c conda-forge keras-applications keras-preprocessing
 
 # Compile TensorFlow
 
@@ -54,9 +54,12 @@ export TF_NEED_GDR=0
 export TF_NEED_OPENCL_SYCL=0
 export TF_SET_ANDROID_WORKSPACE=0
 export TF_NEED_AWS=0
+export TF_NEED_ROCM=0
 
 # Compiler options
 export GCC_HOST_COMPILER_PATH=$(which gcc)
+
+# Here you can edit this variable to set any optimizations you want.
 export CC_OPT_FLAGS="-march=native"
 
 if [ "$USE_GPU" -eq "1" ]; then
