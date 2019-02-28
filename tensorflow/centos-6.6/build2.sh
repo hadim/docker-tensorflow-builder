@@ -87,6 +87,7 @@ if [ "$USE_GPU" -eq "1" ]; then
 			    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 			    //tensorflow/tools/pip_package:build_pip_package
 
+	PACKAGE_NAME="tensorflow_gpu-${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}-cuda${TF_CUDA_VERSION}-cudnn${TF_CUDNN_VERSION}"
 else
 
 	bazel build --config=opt \
@@ -97,16 +98,17 @@ else
 		    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		    //tensorflow/tools/pip_package:build_pip_package
 
+	PACKAGE_NAME="tensorflow-${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}"
 fi
 
 rm -f /usr/bin/ld
 mv /usr/bin/ld_ori /usr/bin/ld
 
 # Project name can only be set for TF > 1.8
-#PROJECT_NAME="tensorflow_gpu_cuda_${TF_CUDA_VERSION}_cudnn_${TF_CUDNN_VERSION}"
-#bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name $PROJECT_NAME
+bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name $PROJECT_NAME
 
-bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
+# Use the following for TF <= 1.8
+#bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
 
 # Fix wheel folder permissions
 chmod -R 777 /wheels/
