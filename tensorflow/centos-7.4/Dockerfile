@@ -1,4 +1,4 @@
-FROM centos:6.6
+FROM centos:7.4.1708
 
 RUN yum update -y && \
     yum install -y \

@@ -17,11 +17,10 @@ conda install --yes -c conda-forge keras-applications keras-preprocessing
 
 cd /
 rm -fr tensorflow/
-git clone --depth 1 "https://github.com/tensorflow/tensorflow.git"
+git clone --depth 1 --branch $TF_VERSION_GIT_TAG "https://github.com/tensorflow/tensorflow.git"
 
 TF_ROOT=/tensorflow
 cd $TF_ROOT
-git checkout $TF_VERSION_GIT_TAG
 
 # Python path options
 export PYTHON_BIN_PATH=$(which python)
@@ -35,7 +34,7 @@ export TF_NEED_GCP=1
 export TF_CUDA_COMPUTE_CAPABILITIES=5.2,3.5
 export TF_NEED_HDFS=1
 export TF_NEED_OPENCL=0
-export TF_NEED_JEMALLOC=0  # Need to be disabled on CentOS 6.6
+export TF_NEED_JEMALLOC=1
 export TF_ENABLE_XLA=0
 export TF_NEED_VERBS=0
 export TF_CUDA_CLANG=0

@@ -4,7 +4,7 @@ Docker images to compile TensorFlow yourself.
 
 Tensorflow only provide a limited set of build and it can be challenging to compile yourself on certain configuration. With this `Dockerfile`, you should be able to compile TensorFlow on any Linux platform that run Docker.
 
-Compilation images are provided for Ubuntu 16.04 and CentOS 6.6.
+Compilation images are provided for Ubuntu 16.04, CentOS 7.4 and CentOS 6.6.
 
 ## Requirements
 
@@ -26,7 +26,9 @@ git clone https://github.com/hadim/docker-tensorflow-builder.git
 ```bash
 cd tensorflow/ubuntu-16.04/
 # or
-# cd tensorflow/centos-6.6
+# cd tensorflow/centos-7.4/
+# or
+# cd tensorflow/centos-6.6/
 
 # Build the Docker image
 docker-compose build
@@ -52,7 +54,9 @@ docker-compose run tf
 ```bash
 cd tensorflow/ubuntu-16.04/
 # or
-# cd tensorflow/centos-6.6
+# cd tensorflow/centos-7.4/
+# or
+# cd tensorflow/centos-6.6/
 
 # Build the Docker image
 docker-compose build
