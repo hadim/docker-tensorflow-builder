@@ -79,6 +79,7 @@ docker-compose run tf
 
 ---
 
+- Refer to [tested build configurations](https://www.tensorflow.org/install/source#tested_build_configurations) to know which `BAZEL_VERSION` you need.
 - Be patient, the compilation can be long.
 - Enjoy your Python wheels in the `wheels/` folder.
 - *Don't forget to remove the container to free the space after the build: `docker-compose rm --force`.*
