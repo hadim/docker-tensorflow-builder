@@ -30,14 +30,14 @@ cd tensorflow/ubuntu-16.04/
 # or
 # cd tensorflow/centos-6.6/
 
-# Build the Docker image
-docker-compose build
-
 # Set env variables
-export PYTHON_VERSION=3.7
+export PYTHON_VERSION=3.6.7
 export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=0
+
+# Build the Docker image
+docker-compose build
 
 # Start the compilation
 docker-compose run tf
@@ -58,16 +58,16 @@ cd tensorflow/ubuntu-16.04/
 # or
 # cd tensorflow/centos-6.6/
 
-# Build the Docker image
-docker-compose build
-
 # Set env variables
-export PYTHON_VERSION=3.7
+export PYTHON_VERSION=3.6.7
 export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=1
 export CUDA_VERSION=9.1
 export CUDNN_VERSION=7.1
+
+# Build the Docker image
+docker-compose build
 
 # Start the compilation
 docker-compose run tf
