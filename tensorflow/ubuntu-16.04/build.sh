@@ -54,6 +54,7 @@ export TF_NEED_GDR=0
 export TF_NEED_OPENCL_SYCL=0
 export TF_SET_ANDROID_WORKSPACE=0
 export TF_NEED_AWS=0
+export TF_NEED_IGNITE=0
 export TF_NEED_ROCM=0
 
 # Compiler options
