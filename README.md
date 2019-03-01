@@ -31,7 +31,7 @@ cd tensorflow/ubuntu-16.04/
 # cd tensorflow/centos-6.6/
 
 # Set env variables
-export PYTHON_VERSION=3.7
+export PYTHON_VERSION=3.6.7
 export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=0
@@ -59,7 +59,7 @@ cd tensorflow/ubuntu-16.04/
 # cd tensorflow/centos-6.6/
 
 # Set env variables
-export PYTHON_VERSION=3.7
+export PYTHON_VERSION=3.6.7
 export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=1
