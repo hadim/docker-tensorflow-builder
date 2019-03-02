@@ -77,9 +77,6 @@ fi
 # Compilation
 ./configure
 
-mv /usr/bin/ld /usr/bin/ld_ori
-ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
-
 if [ "$USE_GPU" -eq "1" ]; then
 
 	bazel build --config=opt \
@@ -104,9 +101,6 @@ else
 
 	PACKAGE_NAME="tensorflow-${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}"
 fi
-
-rm -f /usr/bin/ld
-mv /usr/bin/ld_ori /usr/bin/ld
 
 # Project name can only be set for TF > 1.8
 bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name $PROJECT_NAME
