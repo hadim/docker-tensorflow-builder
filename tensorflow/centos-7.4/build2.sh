@@ -53,7 +53,6 @@ export TF_NEED_ROCM=0
 
 # Compiler options
 export GCC_HOST_COMPILER_PATH=$(which gcc)
-export LDFLAGS="-lm -lrt"
 
 # Here you can edit this variable to set any optimizations you want.
 export CC_OPT_FLAGS="-march=native"
@@ -76,17 +75,10 @@ fi
 # Compilation
 ./configure
 
-mv /usr/bin/ld /usr/bin/ld_ori
-ln -s /opt/rh/devtoolset-6/root/usr/bin/ld /usr/bin/ld
-
 if [ "$USE_GPU" -eq "1" ]; then
 
 	bazel build --config=opt \
 				--config=cuda \
-				--linkopt="-lrt" \
-				--linkopt="-lm" \
-				--host_linkopt="-lrt" \
-				--host_linkopt="-lm" \
 			    --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 			    //tensorflow/tools/pip_package:build_pip_package
 
@@ -94,18 +86,11 @@ if [ "$USE_GPU" -eq "1" ]; then
 else
 
 	bazel build --config=opt \
-			    --linkopt="-lrt" \
-			    --linkopt="-lm" \
-			    --host_linkopt="-lrt" \
-			    --host_linkopt="-lm" \
 		        --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
 		        //tensorflow/tools/pip_package:build_pip_package
 
 	PACKAGE_NAME="tensorflow-${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}"
 fi
-
-rm -f /usr/bin/ld
-mv /usr/bin/ld_ori /usr/bin/ld
 
 # Project name can only be set for TF > 1.8
 bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name $PROJECT_NAME
