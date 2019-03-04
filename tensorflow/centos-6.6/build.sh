@@ -4,7 +4,7 @@ set -e
 source /root/.bashrc
 
 if [ "$USE_GPU" -eq "1" ]; then
-	bash setup_cuda.sh
+    bash setup_cuda.sh
 fi
 
 # Enable GCC 6
