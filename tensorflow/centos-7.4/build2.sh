@@ -93,7 +93,7 @@ else
 fi
 
 # Project name can only be set for TF > 1.8
-bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name $PROJECT_NAME
+bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name "$PACKAGE_NAME"
 
 # Use the following for TF <= 1.8
 #bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
