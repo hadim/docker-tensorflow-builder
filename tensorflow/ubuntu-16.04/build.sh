@@ -88,14 +88,14 @@ if [ "$USE_GPU" -eq "1" ]; then
                 --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
                 //tensorflow/tools/pip_package:build_pip_package
 
-    PACKAGE_NAME="tensorflow_gpu-${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}-cuda${TF_CUDA_VERSION}-cudnn${TF_CUDNN_VERSION}"
+    PACKAGE_NAME=tensorflow-gpu
 else
 
     bazel build --config=opt \
                 --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
                 //tensorflow/tools/pip_package:build_pip_package
 
-    PACKAGE_NAME="tensorflow-${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}"
+    PACKAGE_NAME=tensorflow
 fi
 
 # Project name can only be set for TF > 1.8
