@@ -109,4 +109,4 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name 
 #bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
 
 # Fix wheel folder permissions
-chmod -R 777 /wheels/
+chmod -R 666 /wheels/
