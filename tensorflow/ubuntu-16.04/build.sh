@@ -85,6 +85,10 @@ if [ "$USE_GPU" -eq "1" ]; then
 
     bazel build --config=opt \
                 --config=cuda \
+                --linkopt="-lrt" \
+                --linkopt="-lm" \
+                --host_linkopt="-lrt" \
+                --host_linkopt="-lm" \
                 --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
                 //tensorflow/tools/pip_package:build_pip_package
 
@@ -93,6 +97,10 @@ if [ "$USE_GPU" -eq "1" ]; then
 else
 
     bazel build --config=opt \
+                --linkopt="-lrt" \
+                --linkopt="-lm" \
+                --host_linkopt="-lrt" \
+                --host_linkopt="-lm" \
                 --action_env="LD_LIBRARY_PATH=${LD_LIBRARY_PATH}" \
                 //tensorflow/tools/pip_package:build_pip_package
 
