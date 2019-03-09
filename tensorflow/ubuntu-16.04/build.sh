@@ -89,6 +89,7 @@ if [ "$USE_GPU" -eq "1" ]; then
                 //tensorflow/tools/pip_package:build_pip_package
 
     PACKAGE_NAME=tensorflow-gpu
+    SUBFOLDER_NAME="${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}-cuda${TF_CUDA_VERSION}-cudnn${TF_CUDNN_VERSION}"
 else
 
     bazel build --config=opt \
@@ -96,13 +97,16 @@ else
                 //tensorflow/tools/pip_package:build_pip_package
 
     PACKAGE_NAME=tensorflow
+    SUBFOLDER_NAME="${TF_VERSION_GIT_TAG}-py${PYTHON_VERSION}"
 fi
 
+mkdir -p "/wheels/$SUBFOLDER_NAME"
+
 # Project name can only be set for TF > 1.8
-bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels --project_name "$PACKAGE_NAME"
+bazel-bin/tensorflow/tools/pip_package/build_pip_package "/wheels/$SUBFOLDER_NAME" --project_name "$PACKAGE_NAME"
 
 # Use the following for TF <= 1.8
-#bazel-bin/tensorflow/tools/pip_package/build_pip_package /wheels
+#bazel-bin/tensorflow/tools/pip_package/build_pip_package "/wheels/$SUBFOLDER_NAME"
 
 # Fix wheel folder permissions
 chmod -R 666 /wheels/
