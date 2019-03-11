@@ -71,7 +71,7 @@ if [ "$USE_GPU" -eq "1" ]; then
     export TF_CUDNN_VERSION="$CUDNN_VERSION"
     export TF_NEED_CUDA=1
     export TF_NEED_TENSORRT=0
-    export TF_NCCL_VERSION=1.3
+    export TF_NCCL_VERSION=2.4.2
 
     # Those two lines are important for the linking step.
     export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
