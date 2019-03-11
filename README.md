@@ -24,15 +24,15 @@ git clone https://github.com/hadim/docker-tensorflow-builder.git
 - Edit the `build.sh` file to modify TensorFlow compilation parameters. Then launch the build:
 
 ```bash
-cd tensorflow/ubuntu-16.04/
-# or
-# cd tensorflow/centos-7.4/
-# or
-# cd tensorflow/centos-6.6/
+LINUX_DISTRO="ubuntu-16.04"
+# or LINUX_DISTRO="ubuntu-18.10"
+# or LINUX_DISTRO="centos-7.4"
+# or LINUX_DISTRO="centos-6.6"
+cd "tensorflow/$LINUX_DISTRO"
 
 # Set env variables
-export PYTHON_VERSION=3.6.7
-export TF_VERSION_GIT_TAG=v1.13.1
+export PYTHON_VERSION=3.7.1
+export TF_VERSION_GIT_TAG=v2.0.0-alpha0
 export BAZEL_VERSION=0.19
 export USE_GPU=0
 
@@ -52,19 +52,19 @@ docker-compose run tf
 - Edit the `build.sh` file to modify TensorFlow compilation parameters. Then launch the build:
 
 ```bash
-cd tensorflow/ubuntu-16.04/
-# or
-# cd tensorflow/centos-7.4/
-# or
-# cd tensorflow/centos-6.6/
+LINUX_DISTRO="ubuntu-16.04"
+# or LINUX_DISTRO="ubuntu-18.10"
+# or LINUX_DISTRO="centos-7.4"
+# or LINUX_DISTRO="centos-6.6"
+cd "tensorflow/$LINUX_DISTRO"
 
 # Set env variables
-export PYTHON_VERSION=3.6.7
-export TF_VERSION_GIT_TAG=v1.13.1
+export PYTHON_VERSION=3.7.1
+export TF_VERSION_GIT_TAG=v2.0.0-alpha0
 export BAZEL_VERSION=0.19
 export USE_GPU=1
-export CUDA_VERSION=9.1
-export CUDNN_VERSION=7.1
+export CUDA_VERSION=10.0
+export CUDNN_VERSION=7.5
 
 # Build the Docker image
 docker-compose build
