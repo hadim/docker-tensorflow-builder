@@ -4,7 +4,7 @@ Docker images to compile TensorFlow yourself.
 
 Tensorflow only provide a limited set of build and it can be challenging to compile yourself on certain configuration. With this `Dockerfile`, you should be able to compile TensorFlow on any Linux platform that run Docker.
 
-Compilation images are provided for Ubuntu 16.04, CentOS 7.4 and CentOS 6.6.
+Compilation images are provided for Ubuntu 18.10, Ubuntu 16.04, CentOS 7.4 and CentOS 6.6.
 
 ## Requirements
 
