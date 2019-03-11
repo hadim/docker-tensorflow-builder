@@ -28,7 +28,7 @@ if [ "$CUDNN_VERSION" = "7.0" ]; then
   elif [ "$CUDA_VERSION" = "9.1" ]; then
     CUDNN_VERSION_DETAILED="7.0.5.15"
   elif [ -n "$CUDNN_VERSION" ]; then
-    echo "Error: cuDNN 7.0 is not compatible with Cuda $CUDA_VERSION."
+    echo "Error: cuDNN $CUDNN_VERSION is not compatible with Cuda $CUDA_VERSION."
     return
   fi
 
@@ -40,12 +40,10 @@ elif [ "$CUDNN_VERSION" = "7.1" ]; then
 
   if [ "$CUDA_VERSION" = "9.0" ]; then
       CUDNN_VERSION_DETAILED="7.1.4.18"
-  elif [ "$CUDA_VERSION" = "9.1" ]; then
-      CUDNN_VERSION_DETAILED="7.1.3.16"
   elif [ "$CUDA_VERSION" = "9.2" ]; then
       CUDNN_VERSION_DETAILED="7.1.4.18"
   elif [ -n "$CUDNN_VERSION" ]; then
-    echo "Error: cuDNN 7.1 is not compatible with Cuda $CUDA_VERSION."
+    echo "Error: cuDNN $CUDNN_VERSION is not compatible with Cuda $CUDA_VERSION."
     return
   fi
 
@@ -56,21 +54,41 @@ elif [ "$CUDNN_VERSION" = "7.1" ]; then
 elif [ "$CUDNN_VERSION" = "7.4" ]; then
 
   if [ "$CUDA_VERSION" = "9.0" ]; then
-      CUDNN_URL="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.2/prod/9.0_20181213/Ubuntu16_04-x64/libcudnn7_7.4.2.24-1%2Bcuda9.0_amd64.deb"
-      CUDNN_URL_DEV="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.2/prod/9.0_20181213/Ubuntu16_04-x64/libcudnn7-dev_7.4.2.24-1%2Bcuda9.0_amd64.deb"
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.4.2.24-1+cuda9.0_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.4.2.24-1+cuda9.0_amd64.deb"
   elif [ "$CUDA_VERSION" = "9.2" ]; then
-      CUDNN_URL="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.2/prod/9.2_20181213/Ubuntu16_04-x64/libcudnn7_7.4.2.24-1%2Bcuda9.2_amd64.deb"
-      CUDNN_URL_DEV="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.2/prod/9.2_20181213/Ubuntu16_04-x64/libcudnn7-dev_7.4.2.24-1%2Bcuda9.2_amd64.deb"
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.4.2.24-1+cuda9.2_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.4.2.24-1+cuda9.2_amd64.deb"
   elif [ "$CUDA_VERSION" = "10.0" ]; then
-      CUDNN_URL="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.2/prod/10.0_20181213/Ubuntu18_04-x64/libcudnn7_7.4.2.24-1%2Bcuda10.0_amd64.deb"
-      CUDNN_URL_DEV="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.4.2/prod/10.0_20181213/Ubuntu18_04-x64/libcudnn7-dev_7.4.2.24-1%2Bcuda10.0_amd64.deb"
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.4.2.24-1+cuda10.0_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.4.2.24-1+cuda10.0_amd64.deb"
   elif [ -n "$CUDNN_VERSION" ]; then
-    echo "Error: cuDNN 7.5 is not compatible with Cuda $CUDA_VERSION."
+    echo "Error: cuDNN $CUDNN_VERSION is not compatible with Cuda $CUDA_VERSION."
+    return
+  fi
+
+# cuDNN 7.5
+elif [ "$CUDNN_VERSION" = "7.5" ]; then
+
+  if [ "$CUDA_VERSION" = "9.0" ]; then
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.5.0.56-1+cuda9.0_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.5.0.56-1+cuda9.0_amd64.deb"
+  elif [ "$CUDA_VERSION" = "9.2" ]; then
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.5.0.56-1+cuda9.2_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.5.0.56-1+cuda9.2_amd64.deb"
+  elif [ "$CUDA_VERSION" = "10.0" ]; then
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.5.0.56-1+cuda10.0_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.5.0.56-1+cuda10.0_amd64.deb"
+  elif [ "$CUDA_VERSION" = "10.1" ]; then
+      CUDNN_URL="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.5.0.56-1+cuda10.1_amd64.deb"
+      CUDNN_URL_DEV="http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.5.0.56-1+cuda10.1_amd64.deb"
+  elif [ -n "$CUDNN_VERSION" ]; then
+    echo "Error: cuDNN $CUDNN_VERSION is not compatible with Cuda $CUDA_VERSION."
     return
   fi
 
 elif [ -n "$CUDNN_VERSION" ]; then
-  echo "Error: You need to set CUDNN_VERSION to 7.0, 7.1 or 7.4."
+  echo "Error: You need to set CUDNN_VERSION to 7.0, 7.1, 7.4 or 7.5."
   return
 fi
 
@@ -78,10 +96,10 @@ echo "* Installing Cuda $CUDA_VERSION."
 
 # Install Cuda
 wget "$CUDA_URL" -O "/tmp/cuda.run"
-sudo bash "/tmp/cuda.run" --silent --toolkit --override --toolkitpath="$CUDA_PATH"
+bash "/tmp/cuda.run" --silent --toolkit --override --toolkitpath="$CUDA_PATH"
 rm -f "/tmp/cuda.run"
-sudo rm -f "$(dirname $CUDA_PATH)/cuda"
-sudo ln -s $CUDA_PATH "$(dirname $CUDA_PATH)/cuda"
+rm -f "$(dirname $CUDA_PATH)/cuda"
+ln -s $CUDA_PATH "$(dirname $CUDA_PATH)/cuda"
 
 echo "* Cuda $CUDA_VERSION is installed at $CUDA_PATH."
 
@@ -97,7 +115,7 @@ mkdir -p /tmp/cudnn
 cd /tmp/cudnn
 ar x ../cudnn.deb
 tar -xJf data.tar.xz
-sudo mv usr/lib/x86_64-linux-gnu/libcudnn* $CUDA_PATH/lib64/
+mv usr/lib/x86_64-linux-gnu/libcudnn* $CUDA_PATH/lib64/
 rm -fr /tmp/cudnn
 rm -f /tmp/cudnn.deb
 cd ../
@@ -108,8 +126,8 @@ mkdir -p /tmp/cudnn-dev
 cd /tmp/cudnn-dev
 ar x ../cudnn-dev.deb
 tar -xJf data.tar.xz
-sudo mv usr/include/x86_64-linux-gnu/cudnn_v7.h $CUDA_PATH/include/cudnn.h
-sudo mv usr/lib/x86_64-linux-gnu/libcudnn_static_v7.a $CUDA_PATH/lib64/libcudnn_static.a
+mv usr/include/x86_64-linux-gnu/cudnn_v7.h $CUDA_PATH/include/cudnn.h
+mv usr/lib/x86_64-linux-gnu/libcudnn_static_v7.a $CUDA_PATH/lib64/libcudnn_static.a
 rm -fr /tmp/cudnn-dev
 rm -f /tmp/cudnn-dev.deb
 cd ../
