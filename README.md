@@ -31,8 +31,8 @@ LINUX_DISTRO="ubuntu-16.04"
 cd "tensorflow/$LINUX_DISTRO"
 
 # Set env variables
-export PYTHON_VERSION=3.7.1
-export TF_VERSION_GIT_TAG=v2.0.0-alpha0
+export PYTHON_VERSION=3.6.7
+export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=0
 
@@ -59,12 +59,12 @@ LINUX_DISTRO="ubuntu-16.04"
 cd "tensorflow/$LINUX_DISTRO"
 
 # Set env variables
-export PYTHON_VERSION=3.7.1
-export TF_VERSION_GIT_TAG=v2.0.0-alpha0
+export PYTHON_VERSION=3.6.7
+export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=1
-export CUDA_VERSION=10.0
-export CUDNN_VERSION=7.5
+export CUDA_VERSION=9.1
+export CUDNN_VERSION=7.1
 
 # Build the Docker image
 docker-compose build
