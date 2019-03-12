@@ -15,7 +15,7 @@ gcc --version
 # Install an appropriate Python environment
 conda config --add channels conda-forge
 conda create --yes -n tensorflow python==$PYTHON_VERSION
-conda activate tensorflow
+source activate tensorflow
 conda install --yes numpy wheel bazel==$BAZEL_VERSION keras-applications keras-preprocessing
 
 # Compile TensorFlow
