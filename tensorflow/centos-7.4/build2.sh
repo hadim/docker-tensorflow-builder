@@ -112,4 +112,4 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package "/wheels/$SUBFOLDER_NAM
 #bazel-bin/tensorflow/tools/pip_package/build_pip_package "/wheels/$SUBFOLDER_NAME"
 
 # Fix wheel folder permissions
-chmod -R 666 /wheels/
+chmod -R 777 /wheels/
