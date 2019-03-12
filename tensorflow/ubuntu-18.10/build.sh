@@ -4,14 +4,15 @@ set -ex
 export PATH="/conda/bin:/usr/bin:$PATH"
 
 if [ "$USE_GPU" -eq "1" ]; then
+  export CUDA_HOME="/usr/local/cuda"
   source cuda.sh
-  cuda.install $CUDA_VERSION $CUDA_VERSION $NCCL_VERSION
+  cuda.install $CUDA_VERSION $CUDNN_VERSION $NCCL_VERSION
 fi
 
 gcc --version
 
 # Install an appropriate Python environment
-conda config --add channels conda-forge 
+conda config --add channels conda-forge
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 conda activate tensorflow
 conda install --yes numpy wheel bazel==$BAZEL_VERSION keras-applications keras-preprocessing
@@ -66,8 +67,8 @@ export CC_OPT_FLAGS="-march=native"
 
 if [ "$USE_GPU" -eq "1" ]; then
   # Cuda parameters
-  export CUDA_TOOLKIT_PATH=/usr/local/cuda
-  export CUDNN_INSTALL_PATH=/usr/local/cuda
+  export CUDA_TOOLKIT_PATH=$CUDA_HOME
+  export CUDNN_INSTALL_PATH=$CUDA_HOME
   export TF_CUDA_VERSION="$CUDA_VERSION"
   export TF_CUDNN_VERSION="$CUDNN_VERSION"
   export TF_NEED_CUDA=1

@@ -31,7 +31,7 @@ LINUX_DISTRO="ubuntu-16.04"
 cd "tensorflow/$LINUX_DISTRO"
 
 # Set env variables
-export PYTHON_VERSION=3.6.7
+export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=0
@@ -59,12 +59,13 @@ LINUX_DISTRO="ubuntu-16.04"
 cd "tensorflow/$LINUX_DISTRO"
 
 # Set env variables
-export PYTHON_VERSION=3.6.7
+export PYTHON_VERSION=3.6
 export TF_VERSION_GIT_TAG=v1.13.1
 export BAZEL_VERSION=0.19
 export USE_GPU=1
-export CUDA_VERSION=9.1
-export CUDNN_VERSION=7.1
+export CUDA_VERSION=10.0
+export CUDNN_VERSION=7.5
+export NCCL_VERSION=2.4
 
 # Build the Docker image
 docker-compose build
@@ -86,39 +87,9 @@ docker-compose run tf
 
 ## Builds
 
-### Tensorflow 1.9.0
-
-| Py | Distribution | glibc | Processor | Arch | Flags | CUDA | cuDNN | Link |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | CPU | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/cpu/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | CPU | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/centos-6.6/cpu/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/centos-6.6/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl) |
-
-### Tensorflow 1.8.0
-
-| Py | Distribution | glibc | Processor | Arch | Flags | CUDA | cuDNN | Link |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | CPU | `avx2 sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.0 | 7 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.0 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.0-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.2 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/ubuntu-16.04/gpu-cuda-9.2-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | CPU | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7 | [Link](https://storage.cloud.google.com/tensorflow-builds/nazgul/ubuntu-16.04/gpu-cuda-9.0-cudnn-7/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7.1 | - |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/ubuntu-16.04/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | Ubuntu 16.04 | 2.23 | Intel Core i7 960 | GPU | `avx sse` | 9.2 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | CPU | `avx2 sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/centos-6.6/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.0 | 7 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.0 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/boromir/centos-6.6/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7-7700HQ | GPU | `avx2 sse` | 9.2 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | CPU | `avx sse` | - | - | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/centos-6.6/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.0 | 7.1 | - |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.1 | 7.1 | [Link](https://storage.googleapis.com/tensorflow-builds/nazgul/centos-6.6/gpu-cuda-9.1-cudnn-7.1/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl) |
-| 3.6 | CentOS 6.6 | 2.12 | Intel i7 960 | GPU | `avx sse` | 9.2 | 7.1 | - |
+| Tensorflow | Python | Distribution | CUDA | cuDNN | NCCL |
+| --- | --- | --- | --- | --- |  --- |
+| v2.0.0-alpha0 | 3.6 | Ubuntu 18.10 | 10.0 | 7.1 | - |
 
 ## Authors
 
