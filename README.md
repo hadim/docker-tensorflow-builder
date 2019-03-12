@@ -8,8 +8,8 @@ Compilation images are provided for Ubuntu 18.10, Ubuntu 16.04, CentOS 7.4 and C
 
 ## Requirements
 
-- `docker`.
-- `docker-compose`.
+- `docker`
+- `docker-compose`
 
 ## Usage
 
