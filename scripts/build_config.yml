@@ -1,0 +1,21 @@
+matrix:
+    python_version:
+        - 3.6
+        - 3.7
+    tf_version:
+        - v1.13.1
+        - v2.0.0-alpha0
+    use_gpu:
+        - True
+        - False
+    cuda_version:
+        - 9.2
+        - 10.0
+    cudnn_version:
+        - 7.1
+        - 7.5
+exclude:
+    - tf_version: v1.13.1
+      cuda_version: 10.0
+    - cudnn_version: 7.1
+      cuda_version: 10.0
