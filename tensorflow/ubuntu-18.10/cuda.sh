@@ -162,8 +162,6 @@ cuda.install.cuda() {
 cuda.install.cudnn() {
   # Install cuDNN in $CUDA_HOME
 
-  PREVIOUS_DIR=$OLDPWD
-
   if ! is_cuda_home_set; then
     return 1
   fi
@@ -303,14 +301,11 @@ cuda.install.cudnn() {
   rm -f "$CUDNN_TMP_PATH"
   rm -f "$CUDNN_DEV_TMP_PATH"
 
-  cd $PREVIOUS_DIR
   echo "cuDNN $CUDNN_VERSION is installed at $CUDA_HOME."
 }
 
 cuda.install.nccl() {
   # Install NCCL in $CUDA_HOME
-
-  PREVIOUS_DIR=$OLDPWD
 
   if ! is_cuda_home_set; then
     return 1
@@ -447,7 +442,6 @@ cuda.install.nccl() {
   rm -f "$NCCL_TMP_PATH"
   rm -f "$NCCL_DEV_TMP_PATH"
 
-  cd $PREVIOUS_DIR
   echo "NCCL $NCCL_VERSION is installed at $CUDA_HOME."
 }
 
