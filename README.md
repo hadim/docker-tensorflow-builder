@@ -90,6 +90,14 @@ docker-compose run tf
 | Tensorflow | Python | Distribution | CUDA | cuDNN | NCCL |
 | --- | --- | --- | --- | --- |  --- |
 | v2.0.0-alpha0 | 3.6 | Ubuntu 18.10 | 10.0 | 7.1 | - |
+| 1.9.0 | 3.6 | Ubuntu 16.04 | - | - | - |
+| 1.9.0 | 3.6 | Ubuntu 16.04 | 9.0 | 7.1 | - |
+| 1.9.0 | 3.6 | Ubuntu 16.04 | 9.1 | 7.1 | - |
+| 1.9.0 | 3.6 | Ubuntu 16.04 | 9.2 | 7.1 | - |
+| 1.9.0 | 3.6 | CentOS 6.6 | - | - | - |
+| 1.9.0 | 3.6 | CentOS 6.6 | 9.0 | 7.1 | - |
+| 1.9.0 | 3.6 | CentOS 6.6 | 9.1 | 7.1 | - |
+| 1.9.0 | 3.6 | CentOS 6.6 | 9.2 | 7.1 | - |
 
 ## Authors
 
