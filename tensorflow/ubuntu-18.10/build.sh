@@ -11,6 +11,12 @@ if [ "$USE_GPU" -eq "1" ]; then
   cd /
 fi
 
+# Set correct GCC version
+GCC_VERSION="7"
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-$GCC_VERSION 10
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-$GCC_VERSION 10
+update-alternatives --set gcc "/usr/bin/gcc-$GCC_VERSION"
+update-alternatives --set g++ "/usr/bin/g++-$GCC_VERSION"
 gcc --version
 
 # Install an appropriate Python environment

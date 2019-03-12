@@ -4,16 +4,21 @@ set -ex
 export PATH="/conda/bin:/usr/bin:$PATH"
 
 if [ "$USE_GPU" -eq "1" ]; then
-    bash setup_cuda.sh
+  export CUDA_HOME="/usr/local/cuda"
+  alias sudo=""
+  source cuda.sh
+  cuda.install $CUDA_VERSION $CUDNN_VERSION $NCCL_VERSION
+  cd /
 fi
 
 gcc --version
 
 # Install an appropriate Python environment
+conda config --add channels conda-forge
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 source activate tensorflow
 conda install --yes numpy wheel bazel==$BAZEL_VERSION
-conda install --yes -c conda-forge keras-applications keras-preprocessing
+pip install keras-applications keras-preprocessing
 
 # Compile TensorFlow
 
@@ -72,6 +77,8 @@ if [ "$USE_GPU" -eq "1" ]; then
     export TF_NEED_CUDA=1
     export TF_NEED_TENSORRT=0
     export TF_NCCL_VERSION=1.3
+    export NCCL_INSTALL_PATH=$CUDA_HOME
+    export NCCL_INSTALL_PATH=$CUDA_HOME
 
     # Those two lines are important for the linking step.
     export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"

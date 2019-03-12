@@ -7,6 +7,8 @@ RUN apt update && apt install -y \
     wget \
     libjpeg-dev \
     openjdk-8-jdk \
+    gcc-7 \
+    g++-7 \
     && rm -rf /var/lib/lists/*
 
 # Install Anaconda
