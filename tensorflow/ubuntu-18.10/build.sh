@@ -5,6 +5,7 @@ export PATH="/conda/bin:/usr/bin:$PATH"
 
 if [ "$USE_GPU" -eq "1" ]; then
   export CUDA_HOME="/usr/local/cuda"
+  alias sudo=""
   source cuda.sh
   cuda.install $CUDA_VERSION $CUDNN_VERSION $NCCL_VERSION
 fi

@@ -271,7 +271,7 @@ cuda.install.cudnn() {
   cd "$CUDNN_DEV_TMP_DIR_PATH"
   ar x "$CUDNN_DEV_TMP_PATH"
   tar -xJf data.tar.xz
-  
+
   echo "Install cuDNN files."
 
   PARENT_BASE_DIR=$(dirname $CUDA_HOME)
@@ -340,7 +340,7 @@ cuda.install.nccl() {
   # NCCL 2.1
   if [ "$NCCL_VERSION" = "2.1" ]; then
 
-    
+
     if [ "$CUDA_VERSION" = "9.0" ]; then
       NCCL_VERSION_DETAILED="2.1.15-1"
     elif [ "$CUDA_VERSION" = "9.1" ]; then
@@ -423,7 +423,7 @@ cuda.install.nccl() {
   cd "$NCCL_DEV_TMP_DIR_PATH"
   ar x "$NCCL_DEV_TMP_PATH"
   tar -xJf data.tar.xz
-  
+
   echo "Install NCCL files."
 
   PARENT_BASE_DIR=$(dirname $CUDA_HOME)
@@ -434,11 +434,11 @@ cuda.install.nccl() {
     sudo rm -f "$CUDA_HOME/lib64/libnccl_static.a"
     sudo mv "$NCCL_DEV_TMP_DIR_PATH/usr/lib/x86_64-linux-gnu/libnccl_static.a" "$CUDA_HOME/lib64/libnccl_static.a"
   else
-    sudo mv $NCCL_TMP_DIR_PATH/usr/lib/x86_64-linux-gnu/libnccl* "$CUDA_HOME/lib64/"
-    sudo rm -f "$CUDA_HOME/include/nccl.h"
-    sudo mv "$NCCL_DEV_TMP_DIR_PATH/usr/include/nccl.h" "$CUDA_HOME/include/nccl.h"
-    sudo rm -f "$CUDA_HOME/lib64/libnccl_static.a"
-    sudo mv "$NCCL_DEV_TMP_DIR_PATH/usr/lib/x86_64-linux-gnu/libnccl_static.a" "$CUDA_HOME/lib64/libnccl_static.a"
+    mv $NCCL_TMP_DIR_PATH/usr/lib/x86_64-linux-gnu/libnccl* "$CUDA_HOME/lib64/"
+    rm -f "$CUDA_HOME/include/nccl.h"
+    mv "$NCCL_DEV_TMP_DIR_PATH/usr/include/nccl.h" "$CUDA_HOME/include/nccl.h"
+    rm -f "$CUDA_HOME/lib64/libnccl_static.a"
+    mv "$NCCL_DEV_TMP_DIR_PATH/usr/lib/x86_64-linux-gnu/libnccl_static.a" "$CUDA_HOME/lib64/libnccl_static.a"
   fi
 
   echo "Cleanup files."
