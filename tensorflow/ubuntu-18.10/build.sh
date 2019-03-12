@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 export PATH="/conda/bin:/usr/bin:$PATH"
 
@@ -8,6 +8,7 @@ if [ "$USE_GPU" -eq "1" ]; then
   alias sudo=""
   source cuda.sh
   cuda.install $CUDA_VERSION $CUDNN_VERSION $NCCL_VERSION
+  cd /
 fi
 
 gcc --version
@@ -16,7 +17,8 @@ gcc --version
 conda config --add channels conda-forge
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 source activate tensorflow
-conda install --yes numpy wheel bazel==$BAZEL_VERSION keras-applications keras-preprocessing
+conda install --yes numpy wheel bazel==$BAZEL_VERSION
+pip install keras-applications keras-preprocessing
 
 # Compile TensorFlow
 
