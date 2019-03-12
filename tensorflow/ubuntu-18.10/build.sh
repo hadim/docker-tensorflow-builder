@@ -75,6 +75,8 @@ if [ "$USE_GPU" -eq "1" ]; then
   export TF_NEED_CUDA=1
   export TF_NEED_TENSORRT=0
   export TF_NCCL_VERSION=$NCCL_VERSION
+  export NCCL_INSTALL_PATH=$CUDA_HOME
+  export NCCL_INSTALL_PATH=$CUDA_HOME
 
   # Those two lines are important for the linking step.
   export LD_LIBRARY_PATH="$CUDA_TOOLKIT_PATH/lib64:${LD_LIBRARY_PATH}"
