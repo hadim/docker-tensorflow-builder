@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -ex
 
 export PATH="/conda/bin:/usr/bin:$PATH"
 
