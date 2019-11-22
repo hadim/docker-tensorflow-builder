@@ -131,7 +131,7 @@ cuda.install.cuda() {
   elif [ "$CUDA_VERSION" = "10.0" ]; then
     CUDA_URL="https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux"
   elif [ "$CUDA_VERSION" = "10.1" ]; then
-    CUDA_URL="https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.105_418.39_linux.run"
+    CUDA_URL="http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.243_418.87.00_linux.run"
   else
     echo "Error: You need to set CUDA_VERSION to 9.0, 9.1, 9.2, 10.0 or 10.1."
     return 1
