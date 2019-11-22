@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tf:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../../wheels:/wheels
+    environment:
+      - TF_VERSION_GIT_TAG=${TF_VERSION_GIT_TAG:?TF_VERSION_GIT_TAG}
+      - PYTHON_VERSION=${PYTHON_VERSION:?PYTHON_VERSION}
+      - BAZEL_VERSION=${BAZEL_VERSION:?BAZEL_VERSION}
+      - USE_GPU=${USE_GPU-0}
+      - CUDA_VERSION=${CUDA_VERSION-10.0}
+      - CUDNN_VERSION=${CUDNN_VERSION-7.5}
+      - NCCL_VERSION=${NCCL_VERSION-2.4}
