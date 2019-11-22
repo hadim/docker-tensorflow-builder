@@ -24,7 +24,8 @@ git clone https://github.com/hadim/docker-tensorflow-builder.git
 - Edit the `build.sh` file to modify TensorFlow compilation parameters. Then launch the build:
 
 ```bash
-LINUX_DISTRO="ubuntu-16.04"
+# LINUX_DISTRO="ubuntu-16.04"
+LINUX_DISTRO="ubuntu-18.04"
 # or LINUX_DISTRO="ubuntu-18.10"
 # or LINUX_DISTRO="centos-7.4"
 # or LINUX_DISTRO="centos-6.6"
@@ -52,7 +53,8 @@ docker-compose run tf
 - Edit the `build.sh` file to modify TensorFlow compilation parameters. Then launch the build:
 
 ```bash
-LINUX_DISTRO="ubuntu-16.04"
+# LINUX_DISTRO="ubuntu-16.04"
+LINUX_DISTRO="ubuntu-18.04"
 # or LINUX_DISTRO="ubuntu-18.10"
 # or LINUX_DISTRO="centos-7.4"
 # or LINUX_DISTRO="centos-6.6"
@@ -81,6 +83,7 @@ docker-compose run tf
 ---
 
 - Refer to [tested build configurations](https://www.tensorflow.org/install/source#tested_build_configurations) to know which `BAZEL_VERSION` you need.
+- Refer to [the nvidia cuda capabilites table](https://developer.nvidia.com/cuda-gpus#compute) to check the cuda capabilities of your GPU and set accordingly the variable `TF_CUDA_COMPUTE_CAPABILITIES` within the `build.sh` script. 
 - Be patient, the compilation can be long.
 - Enjoy your Python wheels in the `wheels/` folder.
 - *Don't forget to remove the container to free the space after the build: `docker-compose rm --force`.*
