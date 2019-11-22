@@ -48,7 +48,7 @@ export PYTHON_ARG=${TF_ROOT}/lib
 # Compilation parameters
 export TF_NEED_CUDA=0
 export TF_NEED_GCP=1
-export TF_CUDA_COMPUTE_CAPABILITIES=5.2,3.5
+export TF_CUDA_COMPUTE_CAPABILITIES=6.1,5.2,3.5
 export TF_NEED_HDFS=1
 export TF_NEED_OPENCL=0
 export TF_NEED_JEMALLOC=1  # Need to be disabled on CentOS 6.6
