@@ -8,6 +8,7 @@ conda config --add channels conda-forge
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 source activate tensorflow
 conda install --yes numpy wheel bazel==$BAZEL_VERSION
+conda install --yes git
 pip install keras-applications keras-preprocessing
 
 # Compile TensorFlow

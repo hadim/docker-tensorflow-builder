@@ -8,6 +8,7 @@ conda config --add channels conda-forge
 conda create --yes -n tensorflow python==$PYTHON_VERSION
 source activate tensorflow
 conda install --yes numpy wheel bazel==$BAZEL_VERSION
+conda install --yes git
 pip install keras-applications keras-preprocessing
 
 # Compile TensorFlow
@@ -18,11 +19,10 @@ pip install keras-applications keras-preprocessing
 
 cd /
 rm -fr tensorflow/
-git clone --depth 1 "https://github.com/tensorflow/tensorflow.git"
+git clone --depth 1 --branch $TF_VERSION_GIT_TAG "https://github.com/tensorflow/tensorflow.git"
 
 TF_ROOT=/tensorflow
 cd $TF_ROOT
-git checkout $TF_VERSION_GIT_TAG
 
 # Python path options
 export PYTHON_BIN_PATH=$(which python)
